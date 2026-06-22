@@ -36,7 +36,7 @@ def random_resource() -> str:
 def random_signed_url(request: Request):
     resource_name = random_resource()
 
-    to_be_signed = f"{request.url.scheme}://{request.url.hostname}{(':' + str(request.url.port if request.url.port else '').lstrip(':'))}/samples/{resource_name}"
+    to_be_signed = f"{request.url.scheme}://{request.url.hostname}{(':' + str(request.url.port if request.url.port else '')).lstrip(':')}/samples/{resource_name}"
     return {"signed": signer.sign(to_be_signed)}
 
 
