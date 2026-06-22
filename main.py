@@ -9,8 +9,6 @@ from pysigned import URLAuth
 from pysigned.extensions.fastapi import SignedRoute
 
 app = FastAPI()
-app.frontend("/", directory=Path("frontend/dist"))
-
 key = secrets.token_bytes(64)
 signer = URLAuth([key])
 dep = SignedRoute(keyset=[key])
