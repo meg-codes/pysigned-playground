@@ -6,15 +6,15 @@ from pathlib import Path
 from fastapi import FastAPI, Request, Depends
 from fastapi.responses import FileResponse
 from pysigned import URLAuth, KeySet, Ed25519KeyPair
-from pysigned.keys import Key, Ed25519KeyPair
+from pysigned.keys import Key
 from pysigned.extensions.fastapi import SignedRoute
 
 app = FastAPI()
 
-keyset = KeySet.from_env("ED25519_KEYPAIR")
+keyset = KeySet.from_env("ED25519_KEYPAIRS")
 
-signer = URLAuth(keyset)
-dep = SignedRoute(keyset=keyset)
+signer = URLAuth(keyset, require_kid=True)
+dep = SignedRoute(url_auth=signer)
 
 resources = {
     "apollo_11.jpg": FileResponse(

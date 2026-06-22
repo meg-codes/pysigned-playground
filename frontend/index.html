@@ -34,6 +34,12 @@
           but not creation.
         </p>
         <p class="lede">
+          You can also take a look at the optional <code>kid</code> that requires the key's id
+          (as defined in the <code>KeySet</code>) as a query parameter, allowing you to scale to an
+          arbitrarily large key set. Equally, the signer will happily check all valid keys provided
+          when verifying. The choice is yours based on use case.
+        </p>
+        <p class="lede">
           Want a quick and easy package to make signed urls in Python? Take a look
           at the <a target="_blank" href="https://docs.pysigned.org"><code>pysigned</code> docs</a>.
         </p>
@@ -77,6 +83,8 @@
 
 keys = KeySet.from_url("https://try.pysigned.org/jwks.json")
 v = URLAuth(keys)
+# or if you want to enforce kid
+# URLAuth(keys, require_kid=True)
 v.verify("url from panel goes here")</code></pre>
       </section>
     </main>
