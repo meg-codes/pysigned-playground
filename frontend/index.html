@@ -28,9 +28,12 @@
         <p class="lede">
           A signed URL grants time-limited access to a protected resource.
           Mint one, follow it, then tamper with it and watch verification fail.
+
+          <code>pysigned</code> supports symmetric key (HMAC) or asymmetric (ED25519)
+          (as we use here) in cases where you want to allow distributed signature verification
+          but not creation.
         </p>
         <p class="lede">
-
           Want a quick and easy package to make signed urls in Python? Take a look
           at the <a target="_blank" href="https://docs.pysigned.org"><code>pysigned</code> docs</a>.
         </p>
@@ -63,6 +66,18 @@
           <button id="follow-btn" class="primary">Fetch</button>
         </div>
         <div class="output" id="follow-out" hidden></div>
+      </section>
+      <section class="card" id="verify">
+        <h2>Verify it yourself</h2>
+        <p>
+          Want to check a signature on your own? Download the ED25519 public
+          keys from <a href="/jwks.json"><code>/jwks.json</code></a>, or just run:
+        </p>
+        <pre class="snippet"><code>from pysigned import KeySet, URLAuth
+
+keys = KeySet.from_url("https://try.pysigned.org/jwks.json")
+v = URLAuth(keys)
+v.verify("url from panel goes here")</code></pre>
       </section>
     </main>
     <footer class="license">

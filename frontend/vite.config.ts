@@ -9,7 +9,7 @@ const BACKEND = process.env.BACKEND_URL ?? "http://localhost:8000";
 // back through this proxy and have the signature verify — no CORS, no backend
 // changes.
 const proxy = Object.fromEntries(
-  ["/signed", "/samples", "/openapi.json"].map((path) => [
+  ["/signed", "/samples", "/openapi.json", "/jwks.json"].map((path) => [
     path,
     { target: BACKEND, changeOrigin: false },
   ]),

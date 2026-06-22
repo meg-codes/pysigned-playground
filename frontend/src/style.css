@@ -154,6 +154,23 @@ button:disabled {
   cursor: progress;
 }
 
+.snippet {
+  margin: 0;
+  padding: 0.9rem 1rem;
+  background: var(--inset);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+.snippet code {
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--text);
+  white-space: pre;
+}
+
 .output {
   margin-top: 1rem;
   padding: 0.85rem 1rem;
