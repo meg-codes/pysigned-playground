@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pysigned playground</title>
+    <script>
+      // Apply a pinned theme before first paint to avoid a flash of the
+      // wrong colors. "system" stores nothing and falls through to the OS.
+      const t = localStorage.getItem("theme");
+      if (t === "light" || t === "dark")
+        document.documentElement.setAttribute("data-theme", t);
+    </script>
+  </head>
+  <body>
+    <main id="app">
+      <header>
+        <div class="titlebar">
+          <h1>pysigned playground</h1>
+          <button
+            id="theme-btn"
+            class="theme-toggle"
+            type="button"
+            title="Toggle color theme"
+            aria-label="Toggle color theme"
+          ></button>
+        </div>
+        <p class="lede">
+          A signed URL grants time-limited access to a protected resource.
+          Mint one, follow it, then tamper with it and watch verification fail.
+        </p>
+      </header>
+
+      <section class="card" id="mint">
+        <h2><span class="verb get">GET</span> <code>/signed</code></h2>
+        <p>Ask the server for a freshly signed URL to a random resource.</p>
+        <button id="mint-btn">Mint a signed URL</button>
+        <pre class="output" id="mint-out" hidden></pre>
+      </section>
+
+      <section class="card" id="follow">
+        <h2><span class="verb get">GET</span> <code>/samples/{resource}</code></h2>
+        <p>
+          Follow the signed URL to fetch the protected resource. The dependency
+          verifies the <code>sig</code> and <code>exp</code> params before the
+          handler runs.
+        </p>
+        <div class="row">
+          <input
+            id="url-input"
+            type="text"
+            placeholder="Mint a URL above, or paste/edit one here"
+            spellcheck="false"
+          />
+          <button id="tamper-btn" title="Flip a character in the signature">
+            Tamper
+          </button>
+          <button id="follow-btn" class="primary">Fetch</button>
+        </div>
+        <div class="output" id="follow-out" hidden></div>
+      </section>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

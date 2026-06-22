@@ -1,0 +1,195 @@
+/* Force Light Mode when data-theme attribute is set */
+html[data-theme="light"] {
+  color-scheme: light;
+}
+
+/* Force Dark Mode when data-theme attribute is set */
+html[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+:root {
+  /* Enables light-dark() and follows the OS preference until the user picks a
+     theme (which overrides color-scheme via html[data-theme] above). */
+  color-scheme: light dark;
+
+  /* light-dark(<light value>, <dark value>) */
+  --bg: light-dark(#f7f8fa, #0f1117);
+  --card: light-dark(#ffffff, #181b24);
+  --inset: light-dark(#eef0f4, #0e1018);
+  --btn: light-dark(#eceff5, #232735);
+  --border: light-dark(#e2e5ec, #272b38);
+  --text: light-dark(#1a1d26, #e6e8ee);
+  --muted: light-dark(#5c6373, #9aa1b2);
+  --accent: light-dark(#2563eb, #6ea8fe);
+  --on-accent: light-dark(#ffffff, #0b0d13);
+  --ok: light-dark(#16a34a, #4ade80);
+  --bad: light-dark(#dc2626, #f87171);
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 15px/1.55 system-ui, -apple-system, Segoe UI, sans-serif;
+}
+
+#app {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 4rem;
+}
+
+.titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+header h1 {
+  margin: 0 0 0.25rem;
+  font-size: 1.7rem;
+}
+
+.theme-toggle {
+  flex: none;
+  padding: 0.5rem 0.85rem;
+  font-size: 0.85rem;
+}
+
+.lede {
+  color: var(--muted);
+  margin: 0 0 2rem;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem 1.4rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.card h2 {
+  margin: 0 0 0.4rem;
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.card p {
+  color: var(--muted);
+  margin: 0 0 1rem;
+}
+
+code {
+  font-family: var(--mono);
+  font-size: 0.92em;
+}
+
+.verb {
+  font: 700 0.7rem/1 var(--mono);
+  letter-spacing: 0.04em;
+  padding: 0.28rem 0.45rem;
+  border-radius: 6px;
+}
+
+.verb.get {
+  background: rgba(110, 168, 254, 0.16);
+  color: var(--accent);
+}
+
+.row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+input {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  padding: 0.6rem 0.7rem;
+  color: var(--text);
+  background: var(--inset);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+button {
+  font: 600 0.9rem system-ui, sans-serif;
+  padding: 0.6rem 1rem;
+  color: var(--text);
+  background: var(--btn);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+button:hover {
+  border-color: var(--accent);
+}
+
+button.primary {
+  background: var(--accent);
+  color: var(--on-accent);
+  border-color: var(--accent);
+}
+
+button:disabled {
+  opacity: 0.55;
+  cursor: progress;
+}
+
+.output {
+  margin-top: 1rem;
+  padding: 0.85rem 1rem;
+  background: var(--inset);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.output.err {
+  border-color: var(--bad);
+}
+
+.output pre {
+  margin: 0.6rem 0 0;
+  white-space: pre-wrap;
+}
+
+.output img {
+  display: block;
+  margin-top: 0.75rem;
+  max-width: 100%;
+  border-radius: 6px;
+}
+
+.status {
+  font-weight: 700;
+}
+
+.status.ok {
+  color: var(--ok);
+}
+
+.status.bad {
+  color: var(--bad);
+}
