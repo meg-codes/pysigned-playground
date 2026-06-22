@@ -193,3 +193,14 @@ button:disabled {
 .status.bad {
   color: var(--bad);
 }
+
+.license {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.license a {
+  color: var(--accent);
+}
